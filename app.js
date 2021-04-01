@@ -3,6 +3,7 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
 
 const db = require('./models')
 
@@ -14,6 +15,8 @@ app.set('view engine', 'handlebars') // 設定使用 Handlebars 做為樣板引�
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
+app.use(passport.initialize()) // 初始化 passport
+app.use(passport.session()) // 啟動 session 功能
 app.use(flash())
 
 app.use((req, res, next) => {
@@ -26,6 +29,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-require('./routes')(app)
+require('./routes')(app, passport)
 
 module.exports = app
