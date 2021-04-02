@@ -44,6 +44,8 @@ module.exports = (app, passport) => {
   app.get('/admin/restaurants/:id/edit', authenticatedAdmin, adminController.editRestaurant)
   // 編輯一筆餐廳資料
   app.put('/admin/restaurants/:id', authenticatedAdmin, adminController.putRestaurant)
+  // 刪除一筆餐廳資料
+  app.delete('/admin/restaurants/:id', authenticatedAdmin, adminController.deleteRestaurant)
 
   // 註冊路由
   app.get('/signup', userController.signUpPage)
