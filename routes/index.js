@@ -36,6 +36,8 @@ module.exports = (app, passport) => {
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
   // 新增餐廳頁面
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
+  // 新增餐廳功能
+  app.post('/admin/restaurants', authenticatedAdmin, adminController.postRestaurant)
 
   // 註冊路由
   app.get('/signup', userController.signUpPage)
