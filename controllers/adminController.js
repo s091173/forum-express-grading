@@ -9,9 +9,11 @@ const adminController = {
         return res.render('admin/restaurants', { restaurants: restaurants })
       })
   },
+
   createRestaurant: (req, res) => {
     return res.render('admin/create')
   },
+
   postRestaurant: (req, res) => {
     // 餐廳名稱為必填
     if (!req.body.name) {
@@ -30,6 +32,15 @@ const adminController = {
         res.redirect('/admin/restaurants')
       })
   },
+
+  getRestaurant: (req, res) => {
+    return Restaurant.findByPk(req.params.id, { raw: true })
+      .then(restaurant => {
+        return res.render('admin/restaurant', {
+          restaurant: restaurant
+        })
+      })
+  }
 }
 
 
