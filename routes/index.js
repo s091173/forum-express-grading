@@ -32,8 +32,10 @@ module.exports = (app, passport) => {
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
-  // 在 /admin/restaurants 底下則交給 adminController.getRestaurants 處理
+  // 餐廳總表
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
+  // 新增餐廳頁面
+  app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
 
   // 註冊路由
   app.get('/signup', userController.signUpPage)
