@@ -2,6 +2,9 @@ const restController = require('../controllers/restController.js')
 const adminController = require('../controllers/adminController.js')
 const userController = require('../controllers/userController.js')
 
+const multer = require('multer')
+const upload = multer({ dest: 'temp/' })
+
 module.exports = (app, passport) => {
 
   // 身份驗證
@@ -37,13 +40,13 @@ module.exports = (app, passport) => {
   // 新增餐廳頁面
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
   // 新增餐廳功能
-  app.post('/admin/restaurants', authenticatedAdmin, adminController.postRestaurant)
+  app.post('/admin/restaurants', authenticatedAdmin, upload.single('image'), adminController.postRestaurant)
   // 瀏覽一筆餐廳資料
   app.get('/admin/restaurants/:id', authenticatedAdmin, adminController.getRestaurant)
   // 編輯餐廳頁面
   app.get('/admin/restaurants/:id/edit', authenticatedAdmin, adminController.editRestaurant)
   // 編輯一筆餐廳資料
-  app.put('/admin/restaurants/:id', authenticatedAdmin, adminController.putRestaurant)
+  app.put('/admin/restaurants/:id', authenticatedAdmin, upload.single('image'), adminController.putRestaurant)
   // 刪除一筆餐廳資料
   app.delete('/admin/restaurants/:id', authenticatedAdmin, adminController.deleteRestaurant)
 
