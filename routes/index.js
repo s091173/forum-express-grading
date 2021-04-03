@@ -1,3 +1,5 @@
+const helpers = require('../_helpers')
+
 const restController = require('../controllers/restController.js')
 const adminController = require('../controllers/adminController.js')
 const userController = require('../controllers/userController.js')
@@ -10,15 +12,17 @@ module.exports = (app, passport) => {
   // 身份驗證
   // 使用者
   const authenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
+    // if (req.isAuthenticated()) orignial
+    if (helpers.ensureAuthenticated(req)) {
       return next()
     }
     res.redirect('/signin')
   }
   // 管理員
   const authenticatedAdmin = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      if (req.user.isAdmin) {
+    // if (req.isAuthenticated()) original
+    if (helpers.ensureAuthenticated(req)) {
+      if (helpers.getUser(req).isAdmin) {
         return next()
       }
       return res.redirect('/')
