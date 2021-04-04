@@ -56,6 +56,8 @@ module.exports = (app, passport) => {
 
   // 使用者權限管理頁面
   app.get('/admin/users', authenticatedAdmin, adminController.getUsers)
+  // 使用者權限更新
+  app.put('/admin/users/:id/toggleAdmin', authenticatedAdmin, adminController.toggleAdmin)
 
   // 註冊路由
   app.get('/signup', userController.signUpPage)
