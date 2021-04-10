@@ -4,6 +4,7 @@ const restController = require('../controllers/restController.js')
 const adminController = require('../controllers/adminController.js')
 const userController = require('../controllers/userController.js')
 const categoryController = require('../controllers/categoryController.js')
+const commentController = require('../controllers/commentController.js')
 
 const multer = require('multer')
 const upload = multer({ dest: 'temp/' })
@@ -38,6 +39,9 @@ module.exports = (app, passport) => {
   app.get('/restaurants', authenticated, restController.getRestaurants)
   // 前台餐廳個別資料
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
+
+  // 新增評論
+  app.post('/comments', authenticated, commentController.postComment)
 
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
