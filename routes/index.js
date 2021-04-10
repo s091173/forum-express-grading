@@ -42,6 +42,8 @@ module.exports = (app, passport) => {
 
   // 新增評論
   app.post('/comments', authenticated, commentController.postComment)
+  // 刪除評論
+  app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
 
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
