@@ -64,7 +64,6 @@ const restController = {
     return Restaurant.findByPk(req.params.id, {
       include: Category
     }).then(restaurant => {
-      console.log(restaurant.toJSON())
       return res.render('restaurant', {
         restaurant: restaurant.toJSON()
       })
