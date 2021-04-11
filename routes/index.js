@@ -45,8 +45,10 @@ module.exports = (app, passport) => {
   // 刪除評論
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
 
-  // 瀏覽 Profile
+  // 瀏覽 Profile 頁面
   app.get('/users/:id', authenticated, userController.getUser)
+  // 編輯 Profile 頁面
+  app.get('/users/:id/edit', authenticated, userController.editUser)
 
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
