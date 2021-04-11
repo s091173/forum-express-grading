@@ -49,6 +49,8 @@ module.exports = (app, passport) => {
   app.get('/users/:id', authenticated, userController.getUser)
   // 編輯 Profile 頁面
   app.get('/users/:id/edit', authenticated, userController.editUser)
+  // 編輯 Profile 功能
+  app.put('/users/:id', authenticated, userController.putUser)
 
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
