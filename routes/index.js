@@ -37,6 +37,8 @@ module.exports = (app, passport) => {
   app.get('/', authenticated, (req, res) => res.redirect('/restaurants'))
   // 在 /restaurants 底下則交給 restController.getRestaurants 來處理
   app.get('/restaurants', authenticated, restController.getRestaurants)
+  // 最新動態 feeds
+  app.get('/restaurants/feeds', authenticated, restController.getFeeds)
   // 前台餐廳個別資料
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
 
