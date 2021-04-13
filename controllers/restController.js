@@ -68,6 +68,7 @@ const restController = {
     return Restaurant.findByPk(req.params.id, {
       include: [
         Category,
+        { model: User, as: 'FavoritedUsers' },
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
@@ -76,8 +77,10 @@ const restController = {
       restaurant.viewCounts += 1
       restaurant.save()
         .then(restaurant => {
+          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
           return res.render('restaurant', {
-            restaurant: restaurant.toJSON()
+            restaurant: restaurant.toJSON(),
+            isFavorited: isFavorited
           })
         })
     })
