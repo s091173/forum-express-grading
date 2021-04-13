@@ -71,9 +71,13 @@ const restController = {
     }).then(restaurant => {
       // console.log(restaurant.toJSON())
       // console.log(restaurant.Comments[0].dataValues.User.dataValues)
-      return res.render('restaurant', {
-        restaurant: restaurant.toJSON()
-      })
+      restaurant.viewCounts += 1
+      restaurant.save()
+        .then(restaurant => {
+          return res.render('restaurant', {
+            restaurant: restaurant.toJSON()
+          })
+        })
     })
   },
 
