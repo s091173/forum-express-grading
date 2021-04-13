@@ -61,6 +61,12 @@ module.exports = (app, passport) => {
   // 刪除最愛
   app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
 
+  // Like 餐廳
+  app.post('/like/:restaurantId', authenticated, userController.addLike)
+  // Unlike 餐廳
+  app.delete('/like/:restaurantId', authenticated, userController.removeLike)
+
+
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
