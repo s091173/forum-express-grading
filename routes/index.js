@@ -56,6 +56,11 @@ module.exports = (app, passport) => {
   // 編輯 Profile 功能
   app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
 
+  // 加入最愛
+  app.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
+  // 刪除最愛
+  app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
+
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
