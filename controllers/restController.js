@@ -42,7 +42,9 @@ const restController = {
         {
           ...r.dataValues,
           description: r.dataValues.description.substring(0, 50),
-          categoryName: r.dataValues.Category.name
+          categoryName: r.dataValues.Category.name,
+          // 回傳 Boolean
+          isFavorited: req.user.FavoritedRestaurants.map(d => d.id).includes(r.id)
         }))
 
       Category.findAll({
