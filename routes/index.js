@@ -39,6 +39,8 @@ module.exports = (app, passport) => {
   app.get('/restaurants', authenticated, restController.getRestaurants)
   // 最新動態 feeds
   app.get('/restaurants/feeds', authenticated, restController.getFeeds)
+  // top 10 restaurants
+  app.get('/restaurants/top', authenticated, restController.getTopRestaurants)
   // 前台餐廳個別資料
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
   // 餐廳資訊總整理
