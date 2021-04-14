@@ -49,6 +49,8 @@ module.exports = (app, passport) => {
   // 刪除評論
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
 
+  // 美食達人頁面
+  app.get('/users/top', authenticated, userController.getTopUser)
   // 瀏覽 Profile 頁面
   app.get('/users/:id', authenticated, userController.getUser)
   // 編輯 Profile 頁面
