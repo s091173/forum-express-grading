@@ -68,6 +68,11 @@ module.exports = (app, passport) => {
   // Unlike 餐廳
   app.delete('/like/:restaurantId', authenticated, userController.removeLike)
 
+  // 追蹤 User
+  app.post('/following/:userId', authenticated, userController.addFollowing)
+  // 刪除已追蹤 User
+  app.delete('/following/:userId', authenticated, userController.removeFollowing)
+
 
   // 後台入口
   // 連到 /admin 頁面就轉到 /admin/restaurants
