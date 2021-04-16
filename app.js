@@ -24,6 +24,7 @@ app.engine('handlebars', handlebars({
 app.set('view engine', 'handlebars') // 設定使用 Handlebars 做為樣板引擎
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
 app.use(passport.initialize()) // 初始化 passport
 app.use(passport.session()) // 啟動 session 功能
