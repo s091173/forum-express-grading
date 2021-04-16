@@ -3,6 +3,7 @@ const Restaurant = db.Restaurant
 const Category = db.Category
 
 const adminService = require('../../services/adminService.js')
+
 const adminController = {
   getRestaurants: (req, res) => {
     adminService.getRestaurants(req, res, (data) => {
@@ -17,13 +18,10 @@ const adminController = {
   },
 
   deleteRestaurant: (req, res) => {
-    return Restaurant.findByPk(req.params.id)
-      .then((restaurant) => {
-        restaurant.destroy()
-          .then((restaurant) => {
-            res.json({ status: 'success', message: '' })
-          })
-      })
+    adminService.deleteRestaurant(req, res, (data) => {
+      return res.json(data)
+    })
   }
+
 }
 module.exports = adminController
