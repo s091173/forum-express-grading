@@ -17,11 +17,12 @@ router.get('/admin/restaurants/:id', adminController.getRestaurant)
 router.post('/admin/restaurants', upload.single('image'), adminController.postRestaurant)
 // 編輯一筆餐廳資料
 router.put('/admin/restaurants/:id', upload.single('image'), adminController.putRestaurant)
-
 // 刪除一筆餐廳資料
 router.delete('/admin/restaurants/:id', adminController.deleteRestaurant)
 
 // 分類總表
 router.get('/admin/categories', categoryController.getCategories)
+// 新增分類
+router.post('/admin/categories', categoryController.postCategory)
 
 module.exports = router
